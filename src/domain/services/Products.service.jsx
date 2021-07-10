@@ -28,7 +28,6 @@ export const updateProduct = async ({ form, handleOpen }) => {
 export const deleteProduct = async ({ id, handleOpen, shopId }) => {
   const response = await productsRepository.deleteProduct(id);
   mutate(process.env.REACT_APP_URL_LOCAL + "/product-shop?shopId=" + shopId);
-  handleOpen();
 };
 
 export const filterProductByCategory = ({ data, setProducts, categoryId }) => {

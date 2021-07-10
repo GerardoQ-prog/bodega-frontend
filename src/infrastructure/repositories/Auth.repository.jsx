@@ -19,4 +19,20 @@ export const authRepository = {
       throw Error("Error al obtener postLogin");
     }
   },
+  postRegister: async (data) => {
+    try {
+      return await http
+        .post(`${url}/register`, JSON.stringify(data))
+        .then((res) => {
+          return res;
+        })
+        .catch((ex) => {
+          // console.log(ex);
+          return {};
+        });
+    } catch (err) {
+      // console.log(err);
+      throw Error("Error al obtener postRegister");
+    }
+  },
 };

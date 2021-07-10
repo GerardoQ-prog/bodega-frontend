@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStylesFormLogin = makeStyles((theme) => ({
+export const useStylesFormRegister = makeStyles((theme) => ({
   global: {
     display: "flex",
     alignItems: "center",
@@ -10,7 +10,7 @@ export const useStylesFormLogin = makeStyles((theme) => ({
     boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.25)",
     padding: 50,
     maxWidth: 680,
-    width: 600,
+    width: 680,
     margin: "auto",
   },
   title: {
@@ -24,5 +24,15 @@ export const useStylesFormLogin = makeStyles((theme) => ({
     textAlign: "center",
     textDecoration: "underline",
     cursor: "pointer",
+  },
+  grid: {
+    padding: 10,
+  },
+  contentModal: {
+    width: "300px",
+    height: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
 }));

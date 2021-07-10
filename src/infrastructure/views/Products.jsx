@@ -39,7 +39,7 @@ const ProductsView = () => {
         dataCategories={data}
         data={products}
         error={errorProducts}
-        render={(item) => <RowProduct {...item} />}
+        render={(item, index) => <RowProduct key={index} {...item} />}
         setProducts={setProducts}
         productsCurrent={productsCurrent}
       />

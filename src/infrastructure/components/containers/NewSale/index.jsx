@@ -23,8 +23,9 @@ const NewSale = () => {
           <SearchProduct
             setProducts={setProducts}
             data={products}
-            render={(item) => (
+            render={(item, index) => (
               <CardProduct
+                key={index}
                 setSelectProducts={setSelectProducts}
                 selectProducts={selectProducts}
                 {...item}
@@ -36,7 +37,13 @@ const NewSale = () => {
           <Voucher
             selectProducts={selectProducts}
             setSelectProducts={setSelectProducts}
-            render={(item) => <RowSale {...item} />}
+            render={(item) => (
+              <RowSale
+                selectProducts={selectProducts}
+                setSelectProducts={setSelectProducts}
+                {...item}
+              />
+            )}
           />
         </Grid>
       </Grid>

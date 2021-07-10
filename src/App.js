@@ -11,6 +11,7 @@ import Dashboard from "./infrastructure/views/Dashboard";
 import Products from "./infrastructure/views/Products";
 import SalesView from "./infrastructure/views/Sales";
 import NewSaleView from "./infrastructure/views/NewSale";
+import Register from "./infrastructure/views/Register";
 
 const App = () => {
   const infoUser = sessionStorage.getItem("infoUser");
@@ -23,6 +24,7 @@ const App = () => {
             {!infoUser ? (
               <Switch>
                 <Route path="/" exact component={Login} />
+                <Route path="/register" exact component={Register} />
                 <Redirect to="/" />
               </Switch>
             ) : (

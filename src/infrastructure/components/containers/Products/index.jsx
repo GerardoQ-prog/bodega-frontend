@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import { Fragment } from "react";
 import { createProducts } from "../../../../domain/services/Products.service";
 import useDialog from "../../../hooks/useDialog";
 import { useForm } from "../../../hooks/useForm";
@@ -48,6 +49,10 @@ const Products = ({
       id: JSON.parse(sessionStorage.getItem("infoShop")).id,
     });
   };
+
+  React.useEffect(() => {
+    onReset();
+  }, [dialog]);
 
   return (
     <div>
@@ -96,8 +101,8 @@ const Products = ({
             )}
             {data &&
               data.data.length > 0 &&
-              data.data.map((item, key) => {
-                return <>{render(item, key)}</>;
+              data.data.map((item, index) => {
+                return <Fragment key={index}>{render(item, index)}</Fragment>;
               })}
           </TableBody>
         </Table>

@@ -28,4 +28,16 @@ export const useStylesVoucher = makeStyles((theme) => ({
     justifyContent: "space-between",
     margin: "20px 0px",
   },
+  title: {
+    fontSize: 30,
+    fontWeight: 700,
+    margin: "10px 0px",
+  },
+  contentModal: {
+    width: "300px",
+    height: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
 }));

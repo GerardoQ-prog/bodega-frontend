@@ -22,6 +22,9 @@ const DrawerContent = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+  const firstname = JSON.parse(sessionStorage.getItem("infoUser")).firstname;
+  const lastname = JSON.parse(sessionStorage.getItem("infoUser")).lastname;
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -37,7 +40,7 @@ const DrawerContent = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap className={classes.title}>
-            Bienvenido Gerardo Quispe
+            Bienvenido {firstname} {lastname}
           </Typography>
         </Toolbar>
       </AppBar>

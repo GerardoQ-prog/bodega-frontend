@@ -37,11 +37,11 @@ const SearchProduct = ({ data, setProducts, render }) => {
       </div>
       <Grid container>
         {data &&
-          data.map((item) => {
+          data.map((item, index) => {
             return (
               <>
                 <Grid md={12} sm={12} xs={12}>
-                  {render(item)}
+                  {render(item, index)}
                 </Grid>
               </>
             );

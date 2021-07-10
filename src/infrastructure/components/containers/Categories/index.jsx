@@ -42,9 +42,9 @@ const Categories = ({ data, render, error }) => {
         )}
         {data &&
           data.data.length > 0 &&
-          data.data.map((item) => {
+          data.data.map((item, index) => {
             return (
-              <Grid item md={4} sm={6} xs={12}>
+              <Grid item md={4} sm={6} xs={12} key={index}>
                 {render(item)}
               </Grid>
             );

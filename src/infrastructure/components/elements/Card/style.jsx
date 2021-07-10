@@ -15,4 +15,9 @@ export const useStylesCard = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-end",
   },
+  titleModal: {
+    fontSize: 30,
+    fontWeight: 700,
+    margin: "10px 0px",
+  },
 }));

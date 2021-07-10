@@ -1,6 +1,7 @@
 import { Dialog, Typography } from "@material-ui/core";
 import React from "react";
 import { addProductToSale } from "../../../../domain/services/Sales.service";
+import { dateToSale } from "../../../helpers/utils/date";
 import useDialog from "../../../hooks/useDialog";
 import { useForm } from "../../../hooks/useForm";
 import { ButtonPrimary, ButtonSecondary } from "../../ui/Buttons";
@@ -19,7 +20,11 @@ export const CardCategory = ({ ...item }) => {
 export const CardProduct = ({ setSelectProducts, selectProducts, ...item }) => {
   const classes = useStylesCard();
   const { dialog, onChangeDialog } = useDialog(false);
-  const { form: formProduct, onChange: onChangeProduct } = useForm({
+  const {
+    form: formProduct,
+    onChange: onChangeProduct,
+    onReset,
+  } = useForm({
     quantity: "",
     shopId: JSON.parse(sessionStorage.getItem("infoShop")).id,
   });
@@ -38,8 +43,15 @@ export const CardProduct = ({ setSelectProducts, selectProducts, ...item }) => {
         shopId: JSON.parse(sessionStorage.getItem("infoShop")).id,
         name: item.name,
       },
+      onChangeDialog,
     });
   };
+
+  React.useEffect(() => {
+    if (!dialog) {
+      onReset();
+    }
+  }, [dialog]);
 
   return (
     <div className={classes.contentCard}>
@@ -53,7 +65,7 @@ export const CardProduct = ({ setSelectProducts, selectProducts, ...item }) => {
       </div>
       <Dialog open={dialog}>
         <div className={classes.contentModal}>
-          <Typography className={classes.title}>{item.name}</Typography>
+          <Typography className={classes.titleModal}>{item.name}</Typography>
           <InputNumber
             label="Cantidad"
             name="quantity"
@@ -64,6 +76,21 @@ export const CardProduct = ({ setSelectProducts, selectProducts, ...item }) => {
           <ButtonSecondary text="Cancelar" onClick={onChangeDialog} />
         </div>
       </Dialog>
+    </div>
+  );
+};
+
+export const CardSale = ({ ...item }) => {
+  const classes = useStylesCard();
+  return (
+    <div className={classes.contentCard}>
+      <Typography className={classes.titleModal}>{item.saleId}</Typography>
+      <Typography className={classes.title}>
+        Fecha: {dateToSale(item.createdAt)}
+      </Typography>
+      <Typography className={classes.title}>
+        Precio total: s/{item.priceTotal}
+      </Typography>
     </div>
   );
 };

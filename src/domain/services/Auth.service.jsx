@@ -20,7 +20,16 @@ const logout = () => {
   window.location.href = "/";
 };
 
+const signUp = async ({ form, onChangeDialog }) => {
+  const response = await authRepository.postRegister(form);
+  console.log(response);
+  if (response.code === 200) {
+    onChangeDialog();
+  }
+};
+
 export const authService = {
   signIn,
   logout,
+  signUp,
 };
