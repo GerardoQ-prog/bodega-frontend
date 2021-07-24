@@ -20,4 +20,8 @@ export const useStylesCard = makeStyles((theme) => ({
     fontWeight: 700,
     margin: "10px 0px",
   },
+  btn: {
+    background: theme.palette.primary.main,
+    color: "white",
+  },
 }));

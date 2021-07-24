@@ -12,6 +12,9 @@ import Products from "./infrastructure/views/Products";
 import SalesView from "./infrastructure/views/Sales";
 import NewSaleView from "./infrastructure/views/NewSale";
 import Register from "./infrastructure/views/Register";
+import DetailSaleView from "./infrastructure/views/DetailSale";
+import InventoriesView from "./infrastructure/views/Inventories";
+import DetailInventorieView from "./infrastructure/views/DetailInventorie";
 
 const App = () => {
   const infoUser = sessionStorage.getItem("infoUser");
@@ -33,6 +36,13 @@ const App = () => {
                 <Route path="/products" exact component={Products} />
                 <Route path="/sales" exact component={SalesView} />
                 <Route path="/sales-new" exact component={NewSaleView} />
+                <Route path="/sale/:saleId" exact component={DetailSaleView} />
+                <Route path="/inventories" exact component={InventoriesView} />
+                <Route
+                  path="/inventories/:inventorieId"
+                  exact
+                  component={DetailInventorieView}
+                />
                 <Redirect to="/dashboard" />
               </Switch>
             )}

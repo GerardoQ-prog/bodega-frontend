@@ -31,7 +31,7 @@ const Voucher = ({ selectProducts = [], render }) => {
   );
 
   const [message, setMessage] = React.useState("");
-  const { dialog, onChangeDialog } = useDialog();
+  const { dialog, onChangeDialog } = useDialog(false);
 
   const handleCreateSale = () => {
     createSale({

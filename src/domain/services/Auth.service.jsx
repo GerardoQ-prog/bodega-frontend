@@ -6,7 +6,6 @@ const signIn = async ({ form }) => {
   if (response.code === 200) {
     sessionStorage.setItem("infoUser", JSON.stringify(response.data));
     const responseShop = await shopsRepository.getShopByUser(response.data.id);
-    console.log(response.data.id);
     if (responseShop.code === 200) {
       sessionStorage.setItem("infoShop", JSON.stringify(responseShop.data));
       window.location.href = "/dashboard";
@@ -22,7 +21,6 @@ const logout = () => {
 
 const signUp = async ({ form, onChangeDialog }) => {
   const response = await authRepository.postRegister(form);
-  console.log(response);
   if (response.code === 200) {
     onChangeDialog();
   }

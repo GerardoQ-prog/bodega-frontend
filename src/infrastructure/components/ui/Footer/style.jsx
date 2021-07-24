@@ -11,6 +11,7 @@ export const useStyleFooter = makeStyles((theme) => ({
     maxWidth: 1260,
     margin: "auto",
     padding: "20px 20px",
+    color: "white",
   },
   divTypography: {
     display: "flex",

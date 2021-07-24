@@ -22,13 +22,11 @@ export const OptionsProducts = ({
       const dataCategory = dataCategories?.data.find(
         (item) => item.id === product.categoryId
       );
-      console.log(dataCategory);
       return {
         ...product,
         categoryName: dataCategory.name,
       };
     });
-    console.log("namec", newData);
     return newData;
   };
 
@@ -43,7 +41,10 @@ export const OptionsProducts = ({
   }, [form]);
 
   const handleExportExcel = () => {
-    exportToCSVProducts({ data: handleNameCategory(products), name: "prueba" });
+    exportToCSVProducts({
+      data: handleNameCategory(products),
+      name: `Productos - ${new Date()}`,
+    });
   };
 
   return (
@@ -65,3 +66,11 @@ export const OptionsProducts = ({
     </div>
   );
 };
+
+// export const OptionsSales = () => {
+//   const { form, onChange } = useForm({
+//     day: new Date(),
+//   });
+
+//   return <div></div>;
+// };

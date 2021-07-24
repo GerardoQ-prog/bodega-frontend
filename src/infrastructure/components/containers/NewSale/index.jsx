@@ -11,8 +11,6 @@ const NewSale = () => {
   const [products, setProducts] = React.useState([]);
   const [selectProducts, setSelectProducts] = React.useState([]);
 
-  console.log("selce", selectProducts);
-
   return (
     <div>
       <div className={classes.contentTitle}>

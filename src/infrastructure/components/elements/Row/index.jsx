@@ -18,6 +18,7 @@ import {
   deleteProductBySale,
   updateProductBySale,
 } from "../../../../domain/services/Sales.service";
+import { updateListProductsByInventorie } from "../../../../domain/services/Inventories.service";
 
 export const RowProduct = ({ ...item }) => {
   const quantity = item.quantity;
@@ -149,8 +150,6 @@ export const RowSale = ({ selectProducts, setSelectProducts, ...item }) => {
     });
   };
 
-  console.log("item", item);
-
   return (
     <>
       <TableRow>
@@ -204,5 +203,84 @@ export const RowSale = ({ selectProducts, setSelectProducts, ...item }) => {
         </div>
       </Dialog>
     </>
+  );
+};
+
+export const RowInventorie = ({
+  dataInventorie,
+  selectProducts,
+  setSelectProducts,
+  inventorieId,
+  ...item
+}) => {
+  const classes = useStylesRow();
+  const [total, setTotal] = React.useState(
+    dataInventorie?.data?.status === 1
+      ? item.quantityCurrent
+      : item.quantityReal - item.quantityCurrent
+  );
+
+  const { form, onChange, onReset } = useForm({
+    inventorieId: inventorieId,
+    productId: item.productId,
+    quantityReal: 0,
+  });
+
+  const { error, data } = useSWR(
+    `${process.env.REACT_APP_URL_LOCAL}/product/${item.productId}`,
+    http.get
+  );
+
+  React.useEffect(() => {
+    if (dataInventorie?.data?.status === 1) {
+      setTotal(form.quantityReal - item.quantityCurrent);
+    } else {
+      setTotal(item.quantityReal - item.quantityCurrent);
+    }
+  }, [form]);
+
+  const handleQuantityProduct = () => {
+    updateListProductsByInventorie({
+      selectProducts,
+      newQuantity: form.quantityReal,
+      product: form,
+      setSelectProducts,
+      idProduct: item.productId,
+    });
+  };
+
+  return (
+    <TableRow>
+      <TableCell align="left" className={classes.cell}>
+        {data?.data?.name}
+      </TableCell>
+      <TableCell align="left" className={classes.cell}>
+        s/{data?.data?.price}
+      </TableCell>
+      <TableCell align="left" className={classes.cell}>
+        {item.quantityCurrent}
+      </TableCell>
+      <TableCell align="left" className={classes.cell}>
+        {dataInventorie?.data?.status === 1 ? (
+          <div style={{ width: "100px" }}>
+            <InputNumber
+              name="quantityReal"
+              value={form.quantityReal}
+              handleChange={onChange}
+            />
+          </div>
+        ) : (
+          item.quantityReal
+        )}
+      </TableCell>
+      <TableCell align="left" className={classes.cell}>
+        {total}
+      </TableCell>
+      <TableCell align="left" className={classes.cell}>
+        {dataInventorie?.data?.status === 1 && (
+          <ButtonSecondary text="Guardar" onClick={handleQuantityProduct} />
+        )}
+      </TableCell>
+    </TableRow>
   );
 };

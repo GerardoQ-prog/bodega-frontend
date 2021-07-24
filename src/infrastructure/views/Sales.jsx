@@ -13,12 +13,19 @@ const SalesView = () => {
     http.get
   );
 
-  console.log(data);
+  const [sales, setSales] = React.useState(null);
+  const [salesCurrent, setSalesCurrent] = React.useState(null);
+
+  React.useEffect(() => {
+    setSales(data);
+    setSalesCurrent(data);
+  }, [data]);
 
   return (
     <DrawerContent>
       <Sales
-        data={data}
+        data={sales}
+        salesCurrent={salesCurrent}
         error={error}
         render={(item) => <CardSale {...item} />}
       />

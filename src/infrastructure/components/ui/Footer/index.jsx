@@ -12,7 +12,7 @@ const Footer = () => {
       <br></br>
       <div className={classes.container}>
         <div className={classes.containerFooter}>
-          <Typography>© Autogermana {new Date().getFullYear()}</Typography>
+          <Typography>© Sistema Bodega {new Date().getFullYear()}</Typography>
         </div>
       </div>
     </>

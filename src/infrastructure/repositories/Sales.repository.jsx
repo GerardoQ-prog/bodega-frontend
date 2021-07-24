@@ -19,4 +19,20 @@ export const salesRepository = {
       throw Error("Error al obtener postCreateSale");
     }
   },
+  postSaleByDay: async (data) => {
+    try {
+      return await http
+        .post(`${url}/sales-day`, JSON.stringify(data))
+        .then((res) => {
+          return res;
+        })
+        .catch((ex) => {
+          // console.log(ex);
+          return {};
+        });
+    } catch (err) {
+      // console.log(err);
+      throw Error("Error al obtener postSaleByDay");
+    }
+  },
 };

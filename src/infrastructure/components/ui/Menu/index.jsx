@@ -62,11 +62,11 @@ const Menu = () => {
           text: "Inventarios",
           router: "/inventories",
         })}
-        {ItemMenu({
+        {/* {ItemMenu({
           Icon: AssessmentIcon,
           text: "Reportes",
           router: "/reports",
-        })}
+        })} */}
       </List>
     </div>
   );

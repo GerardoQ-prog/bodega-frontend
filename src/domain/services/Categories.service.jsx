@@ -13,7 +13,6 @@ export const getCategories = (dataCategories) => {
 
 export const createCategories = async ({ form, id, handleOpen }) => {
   const response = await categoryRepository.postCategoryByShop(form);
-  console.log(response);
   mutate(process.env.REACT_APP_URL_LOCAL + "/categories-shop?shopId=" + id);
   handleOpen();
 };

@@ -1,12 +1,13 @@
 import React from "react";
+import Dashboard from "../components/containers/Dashboard";
 import DrawerContent from "../components/ui/Drawer";
 
-const Dashboard = () => {
+const DashboardView = () => {
   return (
-    <div>
-      <DrawerContent />
-    </div>
+    <DrawerContent>
+      <Dashboard />
+    </DrawerContent>
   );
 };
 
-export default Dashboard;
+export default DashboardView;

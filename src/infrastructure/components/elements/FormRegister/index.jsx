@@ -80,6 +80,7 @@ const FormRegister = () => {
             name="password"
             value={form.password}
             handleChange={onChange}
+            type={"password"}
           />
         </Grid>
         <Grid item md={6} sm={12} xs={12} className={classes.grid}>

@@ -6,6 +6,7 @@ export const createProducts = async ({ form, id, handleOpen }) => {
     ...form,
     quantity: parseInt(form.quantity),
     price: parseFloat(form.price),
+    quantitySale: 0,
   };
   const response = await productsRepository.postProduct(data);
   mutate(process.env.REACT_APP_URL_LOCAL + "/product-shop?shopId=" + id);
@@ -52,4 +53,22 @@ export const searchProductByName = async ({ form, setProducts }) => {
   } else {
     setProducts([]);
   }
+};
+
+export const orderProductsBySales = ({ products }) => {
+  products.sort(function (a, b) {
+    if (a.quantitySale < b.quantitySale) {
+      return 1;
+    }
+    if (a.quantitySale > b.quantitySale) {
+      return -1;
+    }
+    return 0;
+  });
+  return products;
+};
+
+export const filterProductsStockZero = ({ products }) => {
+  const productsZero = products.filter((item) => item.quantity == 0);
+  return productsZero;
 };

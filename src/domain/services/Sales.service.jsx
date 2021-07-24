@@ -50,3 +50,17 @@ export const deleteProductBySale = ({
   );
   setSelectProducts(newProducts);
 };
+
+export const getSaleByDay = async ({ shopId, setSales }) => {
+  const response = await salesRepository.postSaleByDay({
+    day: new Date().getDate(),
+    month: new Date().getMonth() + 1,
+    year: new Date().getFullYear(),
+    shopId,
+  });
+  if (response.code === 200) {
+    setSales(response.data);
+  } else {
+    setSales([]);
+  }
+};
